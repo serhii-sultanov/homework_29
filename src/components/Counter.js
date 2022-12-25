@@ -1,4 +1,4 @@
-import { memo, useCallback } from "react";
+import { memo } from "react";
 
 import { HStack } from "@chakra-ui/react";
 import { IconButton } from "@chakra-ui/react";
@@ -11,14 +11,12 @@ const Counter = () => {
   const initialValue = 1;
   const { count, increment, decrement, setCount } = useCounter(initialValue);
 
-  const handleChange = useCallback(() => {
-    return ({ target: { value } }) => {
-      if (value !== "" && value < initialValue) {
-        value = count;
-      }
-      setCount(value);
-    };
-  }, []);
+  const handleChange = ({ target: { value } }) => {
+    if (value !== "" && value < initialValue) {
+      value = count;
+    }
+    setCount(value);
+  };
 
   return (
     <HStack maxW="320px">
