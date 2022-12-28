@@ -11,9 +11,12 @@ const Counter = () => {
   const initialValue = 1;
   const { count, increment, decrement, setCount } = useCounter(initialValue);
 
+  const isDisabled = count <= initialValue;
+
   const handleChange = ({ target: { value } }) => {
     if (value !== "" && value < initialValue) {
-      value = count;
+      setCount(initialValue);
+      return;
     }
     setCount(value);
   };
@@ -24,7 +27,7 @@ const Counter = () => {
         onClick={decrement}
         aria-label="Search database"
         icon={<MinusIcon />}
-        isDisabled={count <= initialValue}
+        isDisabled={isDisabled}
       />
       <Input onChange={handleChange} value={count} />
       <IconButton
